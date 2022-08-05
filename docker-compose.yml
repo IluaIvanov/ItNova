@@ -37,7 +37,7 @@ services:
     restart: always
     hostname: *mysqlname
     environment: 
-      MYSQL_DATABASE: сurrencies
+      MYSQL_DATABASE: local
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: dev
       MYSQL_PASSWORD: 123
