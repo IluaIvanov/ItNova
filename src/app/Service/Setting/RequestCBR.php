@@ -2,26 +2,25 @@
 
 namespace App\Service\Setting;
 
-use Exception;
+use App\Service\RequestData;
 
-class RequestCBR
+class RequestCBR extends WorkFile
 {
-    private $settingPath = storage_path().'setting.json';
-
-    public function saveSetting()
+    public function getSetting()
     {
+        $currentData = $this->getFileData();
+        $valutesCB = (new RequestData)->valutes;
 
+        foreach ($valutesCB as $key => $value) {
+            if(in_array($value['Valute'], $currentData)) $valutesCB[$key]['request'] = true;
+            else $valutesCB[$key]['request'] = false;
+        }
+
+        return $valutesCB;
     }
 
-    public function saveFile($data)
+    public function setSetting($data)
     {
-        $result = file_put_contents($this->settingPath, json_encode($data));
-        return $result ? true : false;
-    }
-
-    public function getFileData()
-    {
-        if(file_exists($this->settingPath)) return json_decode(file_get_contents($this->settingPath), true);
-        else return [];
+        return $this->saveFile($data);
     }
 }

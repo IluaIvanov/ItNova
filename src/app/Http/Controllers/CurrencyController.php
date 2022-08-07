@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\currencies;
 use App\Service\RequestData;
+use App\Service\Setting\RequestCBR;
 use Illuminate\Http\Request;
 
 class CurrencyController extends Controller
@@ -15,7 +16,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        if(file_exists(storage_path().'setting.json')) return file_get_contents(storage_path().'setting.json');
+        return print_r((new RequestCBR)->getSetting());
         // $requestData = new RequestData;
         // return $requestData->parseXML();
     }

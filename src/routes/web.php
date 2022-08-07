@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CurrencyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', [CurrencyController::class, 'index']);
-
-Route::get('/', function () {
+Route::get('{any}', function () {
     return view('app');
-});
+})->where('any', '.*');

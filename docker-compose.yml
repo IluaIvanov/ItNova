@@ -50,7 +50,7 @@ services:
       restart: always
       hostname: *mysqladmin
       ports: 
-        - 127.0.0.1:5454:8080
+        - 5454:8080
       networks:
         - app-network
 
@@ -73,8 +73,6 @@ services:
     container_name: local-node
     restart: on-failure
     hostname: *nodename
-    ports:
-      - 3000:3000
     volumes:
       - ./src:/var/www/local:rw
     working_dir: /var/www/local
