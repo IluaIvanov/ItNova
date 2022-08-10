@@ -32,4 +32,10 @@ class Currency extends Model
     {
         return $this->hasMany('App\Models\ChangeCourse');
     }
+
+    public function lastCourse()
+    {
+        return $this->hasOne('App\Models\ChangeCourse', 'currency_id', 'id')
+            ->orderByDesc('id');
+    }
 }

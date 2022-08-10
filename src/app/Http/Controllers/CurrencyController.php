@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\currencies;
-use App\Service\RequestData;
-use App\Service\Setting\RequestCBR;
-use Illuminate\Http\Request;
+use App\Models\ChangeCourse;
+use App\Models\Currency;
 
 class CurrencyController extends Controller
 {
@@ -16,9 +14,9 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        return print_r((new RequestCBR)->getSetting());
-        // $requestData = new RequestData;
-        // return $requestData->parseXML();
+        return (new Currency)
+            ->with('lastCourse')
+            ->get();
     }
 
     /**

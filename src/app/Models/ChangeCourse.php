@@ -17,6 +17,8 @@ class ChangeCourse extends Model
 {
     use HasFactory;
 
+    protected $table = 'change_courses';
+
     /**
      * @var array
      */
@@ -30,4 +32,17 @@ class ChangeCourse extends Model
         return $this->belongsTo('App\Models\Currency');
     }
 
+    public function getLastModel($currencyId)
+    {
+        return $this->where('currency_id', $currencyId)
+            ->orderByDesc('id')
+            ->first();
+    }
+
+    public function getCourseLastModel($currencyId)
+    {
+        $model = $this->getLastModel($currencyId);
+        if(isset($model->value)) return $model->value;
+        return 0;
+    }
 }

@@ -2,13 +2,21 @@
 
 namespace App\Service\Setting;
 
+use App\Models\WorkFile;
 use App\Service\RequestData;
 
-class RequestCBR extends WorkFile
+class RequestCBR
 {
+    protected $accessCache;
+
+    public function __construct()
+    {
+        $this->accessCache = (new WorkFile);
+    }
+
     public function getSetting()
     {
-        $currentData = $this->getFileData();
+        $currentData = $this->accessCache->getFileData();
         $valutesCB = (new RequestData)->valutes;
 
         foreach ($valutesCB as $key => $value) {
@@ -21,6 +29,6 @@ class RequestCBR extends WorkFile
 
     public function setSetting($data)
     {
-        return $this->saveFile($data);
+        return $this->accessCache->saveFile($data);
     }
 }
