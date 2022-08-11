@@ -4,8 +4,8 @@ namespace App\Console\Commands;
 
 use App\Models\ChangeCourse;
 use App\Models\Currency;
+use App\Models\RequestCBR;
 use App\Service\RequestData;
-use App\Models\WorkFile;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +33,7 @@ class RequestCourseCurrency extends Command
      */
     public function handle()
     {
-        $cache = (new WorkFile)->getFileData();
+        $cache = (new RequestCBR)->getArrayCurrent();
         $valutesCB = (new RequestData);
 
         foreach ($valutesCB->valutes as $valute) {
@@ -41,9 +41,10 @@ class RequestCourseCurrency extends Command
                 DB::beginTransaction();
                 try {
                     $change = false;
+                    $valuteFloat = str_replace(',', '.', $valute['Value']);
                     if($currency = Currency::where('valute_id', $valute['Valute'])->first()) {
                         $currencyId = $currency->id;
-                        (float) $valute['Value'] < (float) (new ChangeCourse)->getCourseLastModel($currencyId) ?: $change = true;
+                        $valuteFloat > (new ChangeCourse)->getCourseLastModel($currencyId) ? $change = true : $change= false;
                     }
                     else {
                         $result = Currency::create([
@@ -65,7 +66,7 @@ class RequestCourseCurrency extends Command
 
                     $result = ChangeCourse::create([
                         'date' => strtotime($valutesCB->dateUpdate),
-                        'value' => (float) $valute['Value'],
+                        'value' => (float) $valuteFloat,
                         'currency_id' => $currencyId,
                         'change' => $change
                     ]);

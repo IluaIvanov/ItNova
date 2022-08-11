@@ -19,7 +19,7 @@ return new class extends Migration
             $table->double('value', 8, 6);
             $table->integer('currency_id')->unsigned();
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade')->onUpdate('cascade');
-            $table->boolean('change');
+            $table->boolean('change')->default(false);
             $table->timestamps();
         });
     }

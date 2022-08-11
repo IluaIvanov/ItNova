@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('char_code');
             $table->integer('nominal');
             $table->string('name');
-            $table->boolean('view');
+            $table->boolean('view')->default(false);
             $table->timestamps();
         });
     }

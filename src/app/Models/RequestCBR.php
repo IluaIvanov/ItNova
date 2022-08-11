@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Service\Setting;
+namespace App\Models;
 
-use App\Models\WorkFile;
+use App\Service\WorkFile;
 use App\Service\RequestData;
 
 class RequestCBR
@@ -11,7 +11,7 @@ class RequestCBR
 
     public function __construct()
     {
-        $this->accessCache = (new WorkFile);
+        $this->accessCache = new WorkFile(storage_path().'/setting.json');
     }
 
     public function getSetting()
@@ -25,6 +25,11 @@ class RequestCBR
         }
 
         return $valutesCB;
+    }
+
+    public function getArrayCurrent()
+    {
+        return $this->accessCache->getFileData();
     }
 
     public function setSetting($data)

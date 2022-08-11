@@ -17,8 +17,8 @@ class Kernel extends ConsoleKernel
     {
         //Running a team every day to get courses from the central bank
         $schedule->command('request:currency')
-            ->daily();
-            // ->everyMinute();
+            // ->daily();
+            ->everyMinute();
     }
 
     /**

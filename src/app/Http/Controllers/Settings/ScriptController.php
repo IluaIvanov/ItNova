@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Service\Setting\RequestCBR;
+use App\Models\RequestCBR;
 use Illuminate\Http\Request;
 
 class ScriptController extends Controller

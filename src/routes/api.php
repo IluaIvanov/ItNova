@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\Settings\ScriptController;
+use App\Http\Controllers\Settings\WidgetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/currencies', [CurrencyController::class, 'index']);
 
+Route::get('/frequency', [CurrencyController::class, 'getFrequency']);
+
 Route::get('/settings/script', [ScriptController::class, 'index']);
+
+Route::get('/settings/widget', [WidgetController::class, 'index']);
+
+Route::post('/settings/widget', [WidgetController::class, 'store']);
+
+Route::post('/settings/widget/frequency', [WidgetController::class, 'createOrUpdateFrequency']);
 
 Route::post('/settings/script', [ScriptController::class, 'store']);

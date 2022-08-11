@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Service;
 
 class WorkFile
 {
     private $settingPath;
 
-    public function __construct()
+    public function __construct($path)
     {
-        $this->settingPath = storage_path().'/setting.json';
+        $this->settingPath = $path;
     }
 
     public function saveFile($data)
