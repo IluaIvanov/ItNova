@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class WidgetController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource widget.
      *
      * @return \Illuminate\Http\Response
      */
@@ -39,6 +39,13 @@ class WidgetController extends Controller
                 'view' => true
             ]);
     }
+
+    /**
+     * Creates or updates the refresh rate of information on the widget tab
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
 
     public function createOrUpdateFrequency(Request $request)
     {

@@ -10,7 +10,7 @@ For local application starting (for development) make sure that you have locally
 
 This application uses next services:
 
-- PHP-FPM7.4
+- PHP-FPM8.1
 - MySQL
 - Adminer
 - NGINX

@@ -20,6 +20,12 @@ class CurrencyController extends Controller
             ->get();
     }
 
+    /**
+     * Display a listing of the resource frequency.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function getFrequency()
     {
         return (new Frequency)->get();

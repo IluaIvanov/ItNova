@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ScriptController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource setting script.
      *
      * @return \Illuminate\Http\Response
      */

@@ -42,6 +42,7 @@ class RequestCourseCurrency extends Command
                 try {
                     $change = false;
                     $valuteFloat = str_replace(',', '.', $valute['Value']);
+                    //Check exist order to table currency
                     if($currency = Currency::where('valute_id', $valute['Valute'])->first()) {
                         $currencyId = $currency->id;
                         $valuteFloat > (new ChangeCourse)->getCourseLastModel($currencyId) ? $change = true : $change= false;

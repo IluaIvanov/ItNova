@@ -39,18 +39,16 @@ shell: up ## Start shell into application container
 	docker-compose exec "$(APP_CONTAINER_NAME)" /bin/sh
 
 install: up ## Install application dependencies into application container
-	docker-compose exec "$(APP_CONTAINER_NAME)" composer update
+	docker-compose exec "$(APP_CONTAINER_NAME)" composer install
 	docker-compose exec "$(APP_CONTAINER_NAME)" php artisan migrate
-	docker-compose exec "$(APP_CONTAINER_NAME)" php artisan test
+	docker-compose run --rm "$(NODE_CONTAINER_NAME)" npm install
+	docker-compose run --rm "$(NODE_CONTAINER_NAME)" npm run prod
 
 watch: up ## Start watching assets for changes (node)
-	docker-compose run --rm "$(NODE_CONTAINER_NAME)" npm run dev
+	docker-compose run --rm "$(NODE_CONTAINER_NAME)" npm run watch
 
 init: up ## Make full application initialization
-	docker-compose run --rm "$(NODE_CONTAINER_NAME)" npm run build
-
-testing: up ## Make testing full application
-	docker-compose exec "$(APP_CONTAINER_NAME)" php artisan test
+	docker-compose run --rm "$(NODE_CONTAINER_NAME)" npm run prod
 
 npm: ## allows you to enter an arbitrary command for npm(make npm command="npm install")
 	docker-compose run --rm "$(NODE_CONTAINER_NAME)" $(command)

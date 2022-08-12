@@ -5,7 +5,7 @@
 /public/css
 /public/*.json
 /storage/*.key
-/storage/setting.json
+/storage/*.json
 /vendor
 .env
 .env.backup

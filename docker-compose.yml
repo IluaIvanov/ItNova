@@ -41,6 +41,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: dev
       MYSQL_PASSWORD: 123
+    volumes:
+      - mysql-data:/var/lib/mysql
     networks:
       - app-network
 
@@ -77,8 +79,12 @@ services:
       - ./src:/var/www/local:rw
     working_dir: /var/www/local
     networks:
-    - app-network
+      - app-network
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
