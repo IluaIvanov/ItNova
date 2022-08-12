@@ -40,7 +40,6 @@ shell: up ## Start shell into application container
 
 install: up ## Install application dependencies into application container
 	docker-compose exec "$(APP_CONTAINER_NAME)" composer install
-	docker-compose exec "$(APP_CONTAINER_NAME)" php artisan migrate
 	docker-compose run --rm "$(NODE_CONTAINER_NAME)" npm install
 	docker-compose run --rm "$(NODE_CONTAINER_NAME)" npm run prod
 
